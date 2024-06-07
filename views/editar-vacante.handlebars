@@ -1,0 +1,49 @@
+<main class="contenedor">
+    <form action="/vacantes/editar/{{vacante.url}}" method="POST" class="default-form">
+        <h3>Información general</h3>
+        <div class="campo">
+            <label>Título</label>
+            <input type="text" name="titulo" placeholder="Ej: React Developer" value="{{vacante.titulo}}" required>
+        </div>
+        <div class="campo">
+            <label>Empresa</label>
+            <input type="text" name="empresa" placeholder="Ej: Empresa Contrata" value="{{vacante.empresa}}" required>
+        </div>
+         <div class="campo">
+            <label>Ubicación</label>
+            <input type="text" name="ubicacion" placeholder="Ej: Lambayeque" value="{{vacante.ubicacion}}" required>
+        </div>
+          <div class="campo">
+            <label>Salario (S/.)</label>
+            <input type="text" name="salario" placeholder="Ej: S/. 25,000" value="{{vacante.salario}}" required>
+        </div>
+        <div class="campo">
+            <label>Contrato</label>
+            <select name="contrato">
+                {{#tipoContrato  vacante.contrato}}
+                    <option value="" disabled selected>--Selecciona--</option>
+                    <option value="freelance">Freelance</option>
+                    <option value="completo">Tiempo completo</option>
+                    <option value="medio">Medio tiempo</option>
+                    <option value="proyecto">Por Proyecto</option>
+                {{/tipoContrato}}
+            </select>
+        </div>
+        <h3>Descripción del puesto</h3>
+        <div class="campo descripcion">
+            <label>Descripción del puesto</label>
+            <input type="hidden" id="x" name="descripcion" value="{{{vacante.descripcion}}}">
+            <trix-editor input="x"></trix-editor>
+        </div>
+
+        <h3>Conocimientos</h3>
+        <ul class="lista-conocimientos">
+            {{#seleccionarSkills vacante.skills}}
+            {{/seleccionarSkills}}
+        </ul>
+        <div class="campo centrar-horizontal">
+            <input type="hidden" name="skills" id="skills">
+            <input type="submit" value="Guardar cambios" class="btn btn-azul">
+        </div>
+    </form>
+</main>
